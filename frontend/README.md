@@ -39,7 +39,8 @@ Ensure the backend is running on `http://localhost:8000`. The frontend is config
 npm run dev
 ```
 
-The dashboard will be available at `http://localhost:5173`
+The dashboard will be available at `http://localhost:5175`. This dedicated port
+keeps the SalesAI frontend separate from the ShopiFyX demo store.
 
 ### 4. Production Build
 
@@ -174,7 +175,7 @@ GET /api/emails?limit=100
    npm run dev
    ```
 
-3. **Open your browser** to `http://localhost:5173`
+3. **Open your browser** to `http://localhost:5175`
 
 4. **View incoming emails** in the table as they're processed
 

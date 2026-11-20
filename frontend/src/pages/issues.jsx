@@ -1,10 +1,52 @@
 import { useEffect, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
-import { triggerExchangeAction, triggerRefundAction, updateCustomerIssue } from '../services/api'
+import { updateCustomerIssue } from '../services/api'
 import { useData } from '../context/DataContext'
 
+function formatDar(issue) {
+  const raw = issue?.dar_percent ?? issue?.defect_area_ratio
+  if (raw === null || raw === undefined || raw === '') {
+    return { percent: 0, label: 'DAR not recorded', recorded: false }
+  }
+  const number = Number(raw)
+  if (!Number.isFinite(number) || number < 0) {
+    return { percent: 0, label: 'DAR not recorded', recorded: false }
+  }
+  const percent = number <= 1 ? number * 100 : number
+  const rounded = Math.round(percent * 10) / 10
+  return { percent: rounded, label: `${rounded}% DAR`, recorded: true }
+}
+
+function formatAgentDecision(issue) {
+  const raw = (issue?.agent_decision || issue?.suggested_action || issue?.status || '').toString().trim()
+  const key = raw.toLowerCase().replace(/[\s-]+/g, '_')
+  const labels = {
+    hold_refund_until_received: 'Hold refund until return received',
+    refund_pending_return: 'Hold refund until return received',
+    return_received_awaiting_refund_agent: 'Product received — refund agent paying',
+    refund_initiated: 'Refund initiated at policy allowance',
+    options_presented: 'Options presented to customer',
+    escalate_no_defect: 'Escalate: no visible defect',
+    no_defect_detected_escalated: 'Escalate: no visible defect',
+    under_review: 'Manual support review',
+    exchange_pending: 'Exchange pending',
+    await_returned_product: 'Hold refund until return received',
+    policy_refund_allowance: 'Refund initiated at policy allowance',
+    full_refund: 'Refund initiated at policy allowance',
+    instant_replacement_dispatch: 'Exchange pending',
+  }
+  return labels[key] || raw.replace(/_/g, ' ') || 'Decision pending'
+}
+
 function SeverityBadge({ severity }) {
-  const s = (severity || 'none').toLowerCase()
+  const s = (severity || '').toString().trim().toLowerCase()
+  if (!s || s === 'none' || s === 'null' || s === 'undefined') {
+    return (
+      <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">
+        Severity not assessed
+      </span>
+    )
+  }
   if (s.includes('severe') || s.includes('unusable') || s.includes('high') || s.includes('urgent')) {
     return (
       <span className="inline-flex items-center gap-1 rounded-full bg-rose-50 px-2.5 py-0.5 text-xs font-semibold text-rose-700 ring-1 ring-inset ring-rose-600/20">
@@ -30,15 +72,23 @@ function SeverityBadge({ severity }) {
     )
   }
   return (
-    <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">
-      Standard
+    <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium capitalize text-slate-700">
+      {s.replace(/_/g, ' ')}
     </span>
   )
 }
 
-function StatusBadge({ status }) {
+function StatusBadge({ status, agentDecision }) {
   const st = (status || 'open').toLowerCase()
-  if (st === 'refund_initiated') {
+  const decision = (agentDecision || '').toLowerCase().replace(/[\s-]+/g, '_')
+  if (st === 'refund_initiated' || decision === 'refund_initiated') {
+    if (st === 'resolved' || st === 'closed') {
+      return (
+        <span className="inline-flex items-center rounded-md bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-800 ring-1 ring-inset ring-emerald-600/20">
+          Resolved · Refund initiated
+        </span>
+      )
+    }
     return (
       <span className="inline-flex items-center rounded-md bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-800 ring-1 ring-inset ring-emerald-600/20">
         Refund Initiated
@@ -56,6 +106,13 @@ function StatusBadge({ status }) {
     return (
       <span className="inline-flex items-center rounded-md bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-800 ring-1 ring-inset ring-amber-600/20">
         Options Presented
+      </span>
+    )
+  }
+  if (st === 'received') {
+    return (
+      <span className="inline-flex items-center rounded-md bg-cyan-50 px-2.5 py-1 text-xs font-semibold text-cyan-800 ring-1 ring-inset ring-cyan-600/20">
+        Product Received
       </span>
     )
   }
@@ -88,8 +145,12 @@ export default function OpenIssuesPage() {
 
   const filteredIssues = useMemo(() => {
     return (issues || []).filter((item) => {
+      const status = (item.status || '').toLowerCase()
+      const decision = (item.agent_decision || '').toLowerCase().replace(/[\s-]+/g, '_')
       const matchStatus =
-        selectedStatus === 'all' || (item.status || '').toLowerCase() === selectedStatus.toLowerCase()
+        selectedStatus === 'all' ||
+        status === selectedStatus.toLowerCase() ||
+        (selectedStatus === 'refund_initiated' && decision === 'refund_initiated')
       const q = searchQuery.toLowerCase()
       const matchQuery =
         !q ||
@@ -103,11 +164,15 @@ export default function OpenIssuesPage() {
 
   const stats = useMemo(() => {
     const total = (issues || []).length
-    const refundInit = (issues || []).filter((i) => i.status === 'refund_initiated').length
+    const refundInit = (issues || []).filter(
+      (i) =>
+        i.status === 'refund_initiated' ||
+        (i.agent_decision || '').toLowerCase().replace(/[\s-]+/g, '_') === 'refund_initiated',
+    ).length
     const exchangePend = (issues || []).filter((i) => i.status === 'exchange_pending').length
     const optionsPres = (issues || []).filter((i) => i.status === 'options_presented').length
-    const dars = (issues || []).map((i) => Number(i.defect_area_ratio) || 0).filter((d) => d > 0)
-    const avgDar = dars.length ? (dars.reduce((a, b) => a + b, 0) / dars.length) * 100 : 0
+    const dars = (issues || []).map((i) => formatDar(i)).filter((d) => d.recorded)
+    const avgDar = dars.length ? dars.reduce((a, b) => a + b.percent, 0) / dars.length : 0
 
     return { total, refundInit, exchangePend, optionsPres, avgDar: Math.round(avgDar) }
   }, [issues])
@@ -126,40 +191,18 @@ export default function OpenIssuesPage() {
     }
   }
 
-  const handleTriggerRefund = async (issue) => {
+  const handleMarkReceived = async (issue) => {
     setActionLoading(true)
     try {
-      await triggerRefundAction({
-        order_number: issue.order_number || 'ORD-CURRENT',
-        customer_email: issue.customer_email,
-        customer_id: issue.customer_id,
-        reason: `Admin refund for ${issue.issue_title} (Defect: ${issue.defect_type})`,
+      await updateCustomerIssue(issue.id, {
+        status: 'received',
+        resolution_notes: 'Returned product physically received and ready for refund processing.',
       })
-      toast.success(`Refund initiated for ${issue.order_number || 'order'}`)
+      toast.success(`Product received for ${issue.order_number || 'order'}`)
       refreshIssues()
       if (selectedIssue?.id === issue.id) setSelectedIssue(null)
     } catch (err) {
-      toast.error('Failed to trigger refund')
-    } finally {
-      setActionLoading(false)
-    }
-  }
-
-  const handleTriggerExchange = async (issue) => {
-    setActionLoading(true)
-    try {
-      await triggerExchangeAction({
-        order_number: issue.order_number || 'ORD-CURRENT',
-        customer_email: issue.customer_email,
-        customer_id: issue.customer_id,
-        sku: 'FW-009',
-        replacement_sku: 'FW-009',
-      })
-      toast.success(`Replacement exchange dispatched for ${issue.order_number || 'order'}`)
-      refreshIssues()
-      if (selectedIssue?.id === issue.id) setSelectedIssue(null)
-    } catch (err) {
-      toast.error('Failed to trigger exchange')
+      toast.error('Failed to mark product as received')
     } finally {
       setActionLoading(false)
     }
@@ -214,6 +257,7 @@ export default function OpenIssuesPage() {
           {[
             { key: 'all', label: 'All Issues' },
             { key: 'options_presented', label: 'Options Presented' },
+            { key: 'received', label: 'Products Received' },
             { key: 'refund_initiated', label: 'Refunds Initiated' },
             { key: 'exchange_pending', label: 'Exchanges Pending' },
             { key: 'resolved', label: 'Resolved' },
@@ -261,15 +305,17 @@ export default function OpenIssuesPage() {
                 <tr>
                   <th className="px-4 py-3.5">Customer & Order</th>
                   <th className="px-4 py-3.5">Issue & Defect Triage</th>
-                  <th className="px-4 py-3.5">Severity & DAR</th>
-                  <th className="px-4 py-3.5">Autonomous Resolution Plan</th>
+                  <th className="px-4 py-3.5">Severity</th>
+                  <th className="px-4 py-3.5">DAR</th>
+                  <th className="px-4 py-3.5">Agent Decision</th>
                   <th className="px-4 py-3.5">Status</th>
                   <th className="px-4 py-3.5 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 bg-white">
                 {filteredIssues.map((issue) => {
-                  const darPercent = Math.round((Number(issue.defect_area_ratio) || 0) * 100)
+                  const dar = formatDar(issue)
+                  const barWidth = dar.recorded ? Math.min(100, Math.max(4, dar.percent)) : 0
                   return (
                     <tr key={issue.id} className="hover:bg-slate-50/75 transition-colors">
                       {/* Customer & Order */}
@@ -287,38 +333,53 @@ export default function OpenIssuesPage() {
                       <td className="px-4 py-3.5">
                         <div className="font-medium text-slate-900">{issue.issue_title}</div>
                         <div className="text-xs text-slate-500 max-w-xs truncate">{issue.description}</div>
-                        {issue.defect_type && issue.defect_type !== 'none' && (
-                          <span className="mt-1 inline-flex items-center rounded-full bg-purple-50 px-2 py-0.5 text-xs font-medium text-purple-700">
-                            {issue.defect_type.replace('_', ' ')}
-                          </span>
+                        <span className="mt-1 inline-flex items-center rounded-full bg-purple-50 px-2 py-0.5 text-xs font-medium text-purple-700">
+                          {(issue.defect_type && issue.defect_type !== 'none' ? issue.defect_type : 'no_defect_recorded').replaceAll('_', ' ')}
+                        </span>
+                      </td>
+
+                      {/* Severity */}
+                      <td className="px-4 py-3.5">
+                        <SeverityBadge severity={issue.severity} />
+                      </td>
+
+                      {/* DAR */}
+                      <td className="px-4 py-3.5">
+                        <div className="min-w-[140px] space-y-1">
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">DAR</span>
+                            <span className={`text-sm font-bold ${dar.recorded ? 'text-slate-900' : 'text-slate-400'}`}>
+                              {dar.recorded ? `${dar.percent}%` : 'N/A'}
+                            </span>
+                          </div>
+                          <div className="h-1.5 w-full rounded-full bg-slate-200 overflow-hidden">
+                            <div
+                              className={`h-full ${
+                                !dar.recorded
+                                  ? 'bg-slate-300'
+                                  : dar.percent > 25
+                                    ? 'bg-rose-500'
+                                    : dar.percent > 10
+                                      ? 'bg-amber-500'
+                                      : 'bg-blue-500'
+                              }`}
+                              style={{ width: `${barWidth}%` }}
+                            />
+                          </div>
+                          <div className="text-[11px] text-slate-500">{dar.recorded ? dar.label : 'No visual DAR stored'}</div>
+                        </div>
+                      </td>
+
+                      {/* Agent Decision */}
+                      <td className="px-4 py-3.5">
+                        <div className="text-xs font-semibold text-slate-900">
+                          {formatAgentDecision(issue)}
+                        </div>
+                        {issue.suggested_action && (
+                          <div className="text-[11px] text-slate-500 max-w-xs truncate mt-0.5">
+                            Plan: {issue.suggested_action}
+                          </div>
                         )}
-                      </td>
-
-                      {/* Severity & DAR */}
-                      <td className="px-4 py-3.5">
-                        <div className="space-y-1">
-                          <SeverityBadge severity={issue.severity} />
-                          {darPercent > 0 && (
-                            <div className="flex items-center gap-2 pt-1">
-                              <div className="h-1.5 w-16 rounded-full bg-slate-200 overflow-hidden">
-                                <div
-                                  className={`h-full ${
-                                    darPercent > 25 ? 'bg-rose-500' : darPercent > 10 ? 'bg-amber-500' : 'bg-blue-500'
-                                  }`}
-                                  style={{ width: `${Math.min(100, darPercent)}%` }}
-                                />
-                              </div>
-                              <span className="text-xs font-semibold text-slate-600">{darPercent}% DAR</span>
-                            </div>
-                          )}
-                        </div>
-                      </td>
-
-                      {/* Suggested Action */}
-                      <td className="px-4 py-3.5">
-                        <div className="text-xs font-medium text-slate-900">
-                          {issue.suggested_action || 'Autonomous Triage Review'}
-                        </div>
                         {issue.resolution_notes && (
                           <div className="text-xs text-slate-500 max-w-xs truncate mt-0.5">
                             {issue.resolution_notes}
@@ -328,7 +389,7 @@ export default function OpenIssuesPage() {
 
                       {/* Status */}
                       <td className="px-4 py-3.5">
-                        <StatusBadge status={issue.status} />
+                        <StatusBadge status={issue.status} agentDecision={issue.agent_decision} />
                       </td>
 
                       {/* Actions */}
@@ -339,22 +400,13 @@ export default function OpenIssuesPage() {
                         >
                           View
                         </button>
-                        {issue.status !== 'refund_initiated' && issue.status !== 'resolved' && (
+                        {!['received', 'refund_initiated', 'resolved'].includes(issue.status) && (
                           <button
-                            onClick={() => handleTriggerRefund(issue)}
+                            onClick={() => handleMarkReceived(issue)}
                             disabled={actionLoading}
-                            className="rounded-md bg-emerald-600 px-2.5 py-1 text-xs font-medium text-white hover:bg-emerald-700 disabled:opacity-50"
+                            className="rounded-md bg-cyan-600 px-2.5 py-1 text-xs font-medium text-white hover:bg-cyan-700 disabled:opacity-50"
                           >
-                            Refund
-                          </button>
-                        )}
-                        {issue.status !== 'exchange_pending' && issue.status !== 'resolved' && (
-                          <button
-                            onClick={() => handleTriggerExchange(issue)}
-                            disabled={actionLoading}
-                            className="rounded-md bg-indigo-600 px-2.5 py-1 text-xs font-medium text-white hover:bg-indigo-700 disabled:opacity-50"
-                          >
-                            Exchange
+                            Mark Received
                           </button>
                         )}
                         {issue.status !== 'resolved' && (
@@ -401,19 +453,25 @@ export default function OpenIssuesPage() {
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-500">Defect Type:</span>
-                <span className="font-medium capitalize text-purple-700">{selectedIssue.defect_type || 'Unspecified'}</span>
+                <span className="font-medium capitalize text-purple-700">{selectedIssue.defect_type && selectedIssue.defect_type !== 'none' ? selectedIssue.defect_type.replaceAll('_', ' ') : 'Not recorded'}</span>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center gap-3">
                 <span className="text-slate-500">Severity:</span>
                 <SeverityBadge severity={selectedIssue.severity} />
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-500">Defect Area Ratio (DAR):</span>
-                <span className="font-semibold text-slate-900">{Math.round((Number(selectedIssue.defect_area_ratio) || 0) * 100)}%</span>
+                <span className="font-semibold text-slate-900">
+                  {formatDar(selectedIssue).recorded ? `${formatDar(selectedIssue).percent}% of the defect area visible` : 'DAR not recorded'}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-500">Agent Decision:</span>
+                <span className="font-semibold text-right text-slate-900">{formatAgentDecision(selectedIssue)}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-500">Current Status:</span>
-                <StatusBadge status={selectedIssue.status} />
+                <StatusBadge status={selectedIssue.status} agentDecision={selectedIssue.agent_decision} />
               </div>
 
               <div className="border-t pt-3">
@@ -436,15 +494,6 @@ export default function OpenIssuesPage() {
               >
                 Close
               </button>
-              {selectedIssue.status !== 'refund_initiated' && (
-                <button
-                  onClick={() => handleTriggerRefund(selectedIssue)}
-                  disabled={actionLoading}
-                  className="rounded-lg bg-emerald-600 px-4 py-2 text-xs font-medium text-white hover:bg-emerald-700"
-                >
-                  Authorize Full Refund
-                </button>
-              )}
               {selectedIssue.status !== 'resolved' && (
                 <button
                   onClick={() => handleResolve(selectedIssue.id)}

@@ -5,7 +5,7 @@ import toast from 'react-hot-toast'
 import { useAuth } from '../context/AuthContext'
 
 export default function LoginPage() {
-  const { login, isAuthenticated, defaultDashboardRoute } = useAuth()
+  const { login, isAuthenticated, defaultDashboardRoute, authError } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [submitting, setSubmitting] = useState(false)
@@ -68,7 +68,9 @@ export default function LoginPage() {
           {submitting ? 'Signing in...' : 'Login'}
         </button>
 
-        {errorMessage && <p className="mt-3 text-sm text-red-600">{errorMessage}</p>}
+        {(errorMessage || authError) && (
+          <p className="mt-3 text-sm text-red-600">{errorMessage || authError}</p>
+        )}
 
         <p className="mt-4 text-center text-sm text-slate-600">
           Need an account?{' '}

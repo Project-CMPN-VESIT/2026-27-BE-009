@@ -40,7 +40,7 @@ class CustomerIssue:
     customer_id: Union[str, int] = ""
     issue_title: str = ""
     description: str = ""
-    status: str = "open"  # open, options_presented, refund_initiated, exchange_pending, resolved, escalated
+    status: str = "open"  # open, received, options_presented, refund_initiated, exchange_pending, resolved, escalated
     priority: str = "medium"  # low, medium, high, urgent
     resolution_notes: str = ""
     order_number: Optional[str] = None
@@ -48,6 +48,7 @@ class CustomerIssue:
     severity: Optional[str] = None
     defect_area_ratio: Optional[float] = None
     suggested_action: Optional[str] = None
+    agent_decision: Optional[str] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
     resolved_at: Optional[datetime] = None
@@ -66,6 +67,7 @@ class CustomerIssue:
             "severity": self.severity,
             "defect_area_ratio": self.defect_area_ratio,
             "suggested_action": self.suggested_action,
+            "agent_decision": self.agent_decision,
             "created_at": self.created_at.isoformat() if self.created_at else None,
             "updated_at": self.updated_at.isoformat() if self.updated_at else None,
             "resolved_at": self.resolved_at.isoformat() if self.resolved_at else None,
@@ -165,6 +167,8 @@ class VisualContext:
     summary: str = ""
     matches_order_history: Optional[bool] = None
     matched_order_number: Optional[str] = None
+    vision_available: bool = True
+    json_valid: bool = True
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -185,6 +189,8 @@ class VisualContext:
             "summary": self.summary,
             "matches_order_history": self.matches_order_history,
             "matched_order_number": self.matched_order_number,
+            "vision_available": self.vision_available,
+            "json_valid": self.json_valid,
         }
 
 
@@ -264,4 +270,3 @@ class FormattedMemoryContext:
     relevant_interactions_text: str = ""
     reply_patterns_text: str = ""
     full_context_text: str = ""
-

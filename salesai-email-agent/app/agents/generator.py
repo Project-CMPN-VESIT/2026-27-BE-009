@@ -20,6 +20,53 @@ LOGGER = logging.getLogger(__name__)
 
 STANDARD_CLOSING = "Best regards,\nCustomer Support Team\nShopiFyX"
 
+_SENTENCE_SPLIT_RE = re.compile(r"(?<=[.!?])\s+")
+_CUSTOMER_DEFECT_RE = re.compile(
+    r"\b(?:broken|defective|damaged|torn|cracked|faulty|not working|stopped working|defect)\b",
+    re.I,
+)
+_CUSTOMER_RESOLUTION_RE = re.compile(
+    r"\b(?:refund|replacement|replace|exchange|return|money back)\b",
+    re.I,
+)
+_REPLY_DEFECT_RE = re.compile(
+    r"\b(?:broken|defective|damaged|torn|cracked|faulty)\b",
+    re.I,
+)
+_REPLY_RESOLUTION_RE = re.compile(
+    r"\b(?:refund|replacement|replace(?:ment)?|exchange)\b",
+    re.I,
+)
+_INTERNAL_POLICY_TITLE_RE = re.compile(
+    r"\b(?:delayed delivery escalation protocol|escalation protocol)\b",
+    re.I,
+)
+
+
+def strip_unsolicited_issue_claims(reply: str, customer_message: str = "") -> str:
+    """Drop invented defect/refund language the customer never raised."""
+    if not (reply or "").strip():
+        return reply
+
+    reported_defect = bool(_CUSTOMER_DEFECT_RE.search(customer_message or ""))
+    asked_resolution = bool(_CUSTOMER_RESOLUTION_RE.search(customer_message or ""))
+    paragraphs = re.split(r"\n\s*\n", reply.strip())
+    kept_paragraphs: List[str] = []
+    for paragraph in paragraphs:
+        sentences = [s.strip() for s in _SENTENCE_SPLIT_RE.split(paragraph) if s.strip()]
+        kept = []
+        for sentence in sentences:
+            if _INTERNAL_POLICY_TITLE_RE.search(sentence):
+                continue
+            if not reported_defect and _REPLY_DEFECT_RE.search(sentence):
+                continue
+            if not reported_defect and not asked_resolution and _REPLY_RESOLUTION_RE.search(sentence):
+                continue
+            kept.append(sentence)
+        if kept:
+            kept_paragraphs.append(" ".join(kept))
+    return "\n\n".join(kept_paragraphs).strip() or reply
+
 
 def _extract_json_block(text: str) -> str:
     """Extract JSON substring from generated text."""
@@ -463,6 +510,10 @@ def generate_reply_structured(
                 reply_text = data.get("reply", "")
                 if reply_text and isinstance(reply_text, str) and reply_text.strip():
                     cleaned_reply = normalize_customer_response(reply_text, customer_name=cust_name)
+                    cleaned_reply = normalize_customer_response(
+                        strip_unsolicited_issue_claims(cleaned_reply, current_message),
+                        customer_name=cust_name,
+                    )
                     return {
                         "reply": cleaned_reply,
                         "confidence": float(data.get("confidence", 0.90)),
@@ -473,6 +524,10 @@ def generate_reply_structured(
                 pass
 
         cleaned = normalize_customer_response(generated, customer_name=cust_name)
+        cleaned = normalize_customer_response(
+            strip_unsolicited_issue_claims(cleaned, current_message),
+            customer_name=cust_name,
+        )
         if cleaned:
             return {
                 "reply": cleaned,
@@ -490,7 +545,13 @@ def generate_reply_structured(
         customer_memory=customer_memory,
     )
     return {
-        "reply": normalize_customer_response(fallback, customer_name=cust_name),
+        "reply": normalize_customer_response(
+            strip_unsolicited_issue_claims(
+                normalize_customer_response(fallback, customer_name=cust_name),
+                current_message,
+            ),
+            customer_name=cust_name,
+        ),
         "confidence": 0.70,
         "requires_escalation": False,
         "escalation_reason": None,

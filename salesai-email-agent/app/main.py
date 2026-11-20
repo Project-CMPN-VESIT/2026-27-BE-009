@@ -51,6 +51,7 @@ class EmailRequest(BaseModel):
     customer_email: str
     subject: str
     body: str
+    attachments: List[Dict[str, Any]] = []
 
 
 class CreateUserRequest(BaseModel):
@@ -95,9 +96,17 @@ def verify_firebase_user(authorization: str = Header(default="")) -> Dict[str, A
         if settings.firebase_project_id:
             verify_kwargs["audience"] = settings.firebase_project_id
 
+        auth_request = google_requests.Request()
+        original_call = auth_request.__call__
+
+        def _timed_call(*args, **kwargs):
+            kwargs.setdefault("timeout", 8)
+            return original_call(*args, **kwargs)
+
+        auth_request.__call__ = _timed_call  # type: ignore[method-assign]
         claims = id_token.verify_firebase_token(
             token,
-            google_requests.Request(),
+            auth_request,
             **verify_kwargs,
         )
     except Exception as exc:
@@ -163,6 +172,7 @@ def process_email_endpoint(payload: EmailRequest) -> Dict[str, str]:
             "from": payload.customer_email,
             "subject": payload.subject,
             "body": payload.body,
+            "attachments": payload.attachments or [],
         }
     )
 

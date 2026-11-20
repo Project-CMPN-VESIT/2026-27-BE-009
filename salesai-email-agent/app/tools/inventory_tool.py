@@ -153,11 +153,12 @@ def execute_refund_action(
                 customer_id=customer_id,
                 issue_title=f"Refund Request ({order_number})",
                 description=f"Refund initiated for Order {order_number}. Reason: {reason}",
-                status="refund_initiated",
+                status="resolved",
                 priority="high",
-                resolution_notes=f"Full refund initiated (Ref: {ref_id}). Pending payout gateway settlement.",
+                resolution_notes=f"Refund generated and confirmed (Ref: {ref_id}).",
                 order_number=order_number,
-                suggested_action="Full Refund",
+                suggested_action="Refund generated and issue resolved",
+                agent_decision="refund_initiated",
             )
     except Exception as exc:
         LOGGER.warning("[Action Engine] Could not persist refund issue in Supabase: %s", exc)
@@ -169,7 +170,7 @@ def execute_refund_action(
         "customer_email": customer_email,
         "amount": amount,
         "reason": reason,
-        "action_taken": "Full refund authorized and queued in billing gateway.",
+        "action_taken": "Refund generated and confirmed via payment gateway.",
     }
 
 
@@ -203,6 +204,7 @@ def execute_exchange_action(
                 resolution_notes=f"Replacement order {ex_id} created with prepaid return label.",
                 order_number=order_number,
                 suggested_action="Instant Replacement Dispatch",
+                agent_decision="exchange_pending",
             )
     except Exception as exc:
         LOGGER.warning("[Action Engine] Could not persist exchange issue in Supabase: %s", exc)

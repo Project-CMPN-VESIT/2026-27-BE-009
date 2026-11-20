@@ -38,6 +38,7 @@ def get_customer_context(email: str) -> Dict[str, Any]:
            o.status AS order_status,
            o.order_date AS order_date,
            o.total_amount AS total_amount,
+           o.shipping_address AS shipping_address,
            p.name AS product_name,
            p.sku AS sku,
            contains.quantity AS quantity,
@@ -76,6 +77,7 @@ def get_customer_context(email: str) -> Dict[str, Any]:
                 "status": row.get("order_status"),
                 "order_date": row.get("order_date"),
                 "total_amount": row.get("total_amount"),
+                "shipping_address": row.get("shipping_address"),
                 "products": [],
                 "shipment": {
                     "status": row.get("shipment_status"),

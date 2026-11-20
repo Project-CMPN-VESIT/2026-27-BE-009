@@ -1064,7 +1064,7 @@ VITE_FIREBASE_PROJECT_ID=your-project-id
 npm run dev
 ```
 
-Frontend runs at: `http://localhost:5173`
+Frontend runs at: `http://localhost:5175`
 
 ---
 

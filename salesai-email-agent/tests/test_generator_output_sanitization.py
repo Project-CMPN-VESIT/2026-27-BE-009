@@ -56,6 +56,48 @@ Customer Support Team'''
         self.assertTrue(cleaned.startswith("Hi Sakshi,"))
         self.assertTrue(cleaned.endswith("Best regards,\nCustomer Support Team\nShopiFyX"))
 
+    def test_strips_invented_broken_and_protocol_language(self):
+        from app.agents.generator import strip_unsolicited_issue_claims
+
+        raw = (
+            "I’ve checked our system for the order ID you mentioned (ORD-DEMO-MVXUD4RX) "
+            "and it does not appear in our records. The only EchoTune Mini Buds order we have "
+            "is ORD-DEMO-MW0G5CJN, which was delivered on 2026-11-03. If you received the earbuds "
+            "and they are broken, please let us know so we can arrange a replacement or refund "
+            "under our delayed delivery escalation protocol."
+        )
+        cleaned = strip_unsolicited_issue_claims(
+            raw,
+            customer_message="Where is my EchoTune Mini Buds order ORD-DEMO-MVXUD4RX?",
+        )
+        self.assertNotIn("broken", cleaned.lower())
+        self.assertNotIn("refund", cleaned.lower())
+        self.assertNotIn("replacement", cleaned.lower())
+        self.assertNotIn("escalation protocol", cleaned.lower())
+        self.assertIn("ORD-DEMO-MW0G5CJN", cleaned)
+        self.assertIn("delivered", cleaned.lower())
+
+    def test_unknown_order_id_reply_uses_delivered_graph_order(self):
+        from app.agents.orchestrator import _build_unknown_order_id_reply
+
+        reply = _build_unknown_order_id_reply(
+            customer_name="Sakshi Kukreja",
+            customer_message="Where is my EchoTune Mini Buds order ORD-DEMO-MVXUD4RX?",
+            orders=[{
+                "order_number": "ORD-DEMO-MW0G5CJN",
+                "status": "delivered",
+                "products": [{"name": "EchoTune Mini Buds", "sku": "ELX-012"}],
+                "shipment": {"status": "delivered", "delivered_at": "2026-11-03"},
+            }],
+        )
+        self.assertIn("ORD-DEMO-MVXUD4RX", reply)
+        self.assertIn("not on your account", reply)
+        self.assertIn("ORD-DEMO-MW0G5CJN", reply)
+        self.assertIn("delivered on 2026-11-03", reply)
+        self.assertNotIn("broken", reply.lower())
+        self.assertNotIn("refund", reply.lower())
+        self.assertNotIn("escalation protocol", reply.lower())
+
 
 if __name__ == "__main__":
     unittest.main()

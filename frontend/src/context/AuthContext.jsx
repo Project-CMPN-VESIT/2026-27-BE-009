@@ -20,6 +20,26 @@ const defaultProfile = {
   inviteValidated: false,
 }
 
+const getAuthErrorMessage = (error) => {
+  const statusCode = error?.response?.status
+  const detail = error?.response?.data?.detail
+
+  if (!error?.response && error?.request) {
+    return 'Unable to reach the SalesAI API. Check that the backend is running and try again.'
+  }
+  if (statusCode === 401) {
+    return detail || 'Your Firebase session is invalid. Sign in again.'
+  }
+  if (statusCode === 403) {
+    return detail || 'Your account is not authorized to access SalesAI.'
+  }
+  if (statusCode >= 500) {
+    return 'The SalesAI API failed while loading your account. Try again shortly.'
+  }
+
+  return detail || error?.message || 'Unable to load your SalesAI account.'
+}
+
 export const getDefaultDashboardRoute = (role) => {
   return role === 'admin' ? '/dashboard' : '/emails'
 }
@@ -29,6 +49,7 @@ export function AuthProvider({ children }) {
   const [profile, setProfile] = useState(defaultProfile)
   const [loading, setLoading] = useState(true)
   const [authReady, setAuthReady] = useState(false)
+  const [authError, setAuthError] = useState('')
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -37,9 +58,11 @@ export function AuthProvider({ children }) {
           setUser(null)
           setProfile(defaultProfile)
           setAuthToken(null)
+          setAuthError('')
           return
         }
 
+        setAuthError('')
         const token = await firebaseUser.getIdToken(true)
         setAuthToken(token)
 
@@ -79,7 +102,9 @@ export function AuthProvider({ children }) {
         setAuthToken(null)
         setUser(null)
         setProfile(defaultProfile)
-        toast.error('Access denied. Account is not provisioned or invite is invalid.')
+        const message = getAuthErrorMessage(error)
+        setAuthError(message)
+        toast.error(message)
       } finally {
         setLoading(false)
         setAuthReady(true)
@@ -90,6 +115,7 @@ export function AuthProvider({ children }) {
   }, [])
 
   const login = useCallback(async (email, password) => {
+    setAuthError('')
     const credential = await signInWithEmailAndPassword(auth, email, password)
     const token = await credential.user.getIdToken(true)
     setAuthToken(token)
@@ -156,6 +182,7 @@ export function AuthProvider({ children }) {
       profile,
       loading,
       authReady,
+      authError,
       isAuthenticated: Boolean(user),
       isInviteValidated: profile.inviteValidated,
       isAdmin: profile.role === 'admin',
@@ -165,7 +192,7 @@ export function AuthProvider({ children }) {
       signup,
       logout,
     }),
-    [user, profile, loading, authReady, login, validateInvite, signup, logout],
+    [user, profile, loading, authReady, authError, login, validateInvite, signup, logout],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

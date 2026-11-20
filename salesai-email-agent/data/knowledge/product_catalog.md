@@ -10,6 +10,7 @@ This catalog contains the official, up-to-date specifications, pricing, brand de
 **Brand:** TravelPro
 **SKU:** AL-001
 **Price:** ₹2,999.00
+**Refund Allowance:** ₹2,699.10
 **Availability:** In Stock
 **Customer Rating:** 4.5/5.0
 
@@ -19,6 +20,7 @@ This catalog contains the official, up-to-date specifications, pricing, brand de
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -29,6 +31,7 @@ This catalog contains the official, up-to-date specifications, pricing, brand de
 **Brand:** TravelPro
 **SKU:** AL-002
 **Price:** ₹2,199.00
+**Refund Allowance:** ₹1,979.10
 **Availability:** In Stock
 **Customer Rating:** 4.4/5.0
 
@@ -38,6 +41,7 @@ Compact laptop backpack with padded 15.6-inch laptop sleeve and organizer pocket
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -48,6 +52,7 @@ Compact laptop backpack with padded 15.6-inch laptop sleeve and organizer pocket
 **Brand:** TravelPro
 **SKU:** AL-003
 **Price:** ₹4,999.00
+**Refund Allowance:** ₹4,499.10
 **Availability:** In Stock
 **Customer Rating:** 4.3/5.0
 
@@ -57,6 +62,7 @@ Lightweight hard-shell cabin suitcase with spinner wheels and combination lock.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -67,6 +73,7 @@ Lightweight hard-shell cabin suitcase with spinner wheels and combination lock.
 **Brand:** TravelPro
 **SKU:** AL-004
 **Price:** ₹1,299.00
+**Refund Allowance:** ₹1,169.10
 **Availability:** In Stock
 **Customer Rating:** 4.5/5.0
 
@@ -76,6 +83,7 @@ Six-piece packing cube set for organizing clothing and travel essentials.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -86,6 +94,7 @@ Six-piece packing cube set for organizing clothing and travel essentials.
 **Brand:** CarryLite
 **SKU:** AL-005
 **Price:** ₹999.00
+**Refund Allowance:** ₹899.10
 **Availability:** In Stock
 **Customer Rating:** 4.2/5.0
 
@@ -95,6 +104,7 @@ Durable everyday tote bag with internal organizer and reinforced handles.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -105,6 +115,7 @@ Durable everyday tote bag with internal organizer and reinforced handles.
 **Brand:** CarryLite
 **SKU:** AL-006
 **Price:** ₹1,199.00
+**Refund Allowance:** ₹1,079.10
 **Availability:** In Stock
 **Customer Rating:** 4.3/5.0
 
@@ -114,6 +125,7 @@ Compact crossbody sling bag with adjustable strap and secure zipper pockets.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -124,6 +136,7 @@ Compact crossbody sling bag with adjustable strap and secure zipper pockets.
 **Brand:** CarryLite
 **SKU:** AL-007
 **Price:** ₹899.00
+**Refund Allowance:** ₹809.10
 **Availability:** In Stock
 **Customer Rating:** 4.4/5.0
 
@@ -133,6 +146,7 @@ Slim RFID-blocking wallet with multiple card slots and cash compartment.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -143,6 +157,7 @@ Slim RFID-blocking wallet with multiple card slots and cash compartment.
 **Brand:** FitLife
 **SKU:** AL-008
 **Price:** ₹1,499.00
+**Refund Allowance:** ₹1,349.10
 **Availability:** In Stock
 **Customer Rating:** 4.6/5.0
 
@@ -152,6 +167,7 @@ Double-wall insulated stainless-steel bottle that keeps drinks cold or hot.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -162,6 +178,7 @@ Double-wall insulated stainless-steel bottle that keeps drinks cold or hot.
 **Brand:** FitLife
 **SKU:** AL-009
 **Price:** ₹999.00
+**Refund Allowance:** ₹899.10
 **Availability:** In Stock
 **Customer Rating:** 4.3/5.0
 
@@ -171,6 +188,7 @@ Large leak-resistant sports bottle with ergonomic carry handle.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -181,6 +199,7 @@ Large leak-resistant sports bottle with ergonomic carry handle.
 **Brand:** FitLife
 **SKU:** AL-010
 **Price:** ₹1,799.00
+**Refund Allowance:** ₹1,619.10
 **Availability:** In Stock
 **Customer Rating:** 4.5/5.0
 
@@ -190,6 +209,7 @@ Non-slip 6mm yoga mat with textured surface and carrying strap.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -200,6 +220,7 @@ Non-slip 6mm yoga mat with textured surface and carrying strap.
 **Brand:** FitLife
 **SKU:** AL-011
 **Price:** ₹1,299.00
+**Refund Allowance:** ₹1,169.10
 **Availability:** In Stock
 **Customer Rating:** 4.4/5.0
 
@@ -209,6 +230,7 @@ Five-level resistance band set suitable for home workouts and mobility training.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -219,6 +241,7 @@ Five-level resistance band set suitable for home workouts and mobility training.
 **Brand:** DeskMate
 **SKU:** AL-012
 **Price:** ₹1,999.00
+**Refund Allowance:** ₹1,799.10
 **Availability:** In Stock
 **Customer Rating:** 4.5/5.0
 
@@ -228,6 +251,7 @@ Aluminium adjustable laptop stand designed for ergonomic desk setups.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -238,6 +262,7 @@ Aluminium adjustable laptop stand designed for ergonomic desk setups.
 **Brand:** DeskMate
 **SKU:** AL-013
 **Price:** ₹799.00
+**Refund Allowance:** ₹719.10
 **Availability:** In Stock
 **Customer Rating:** 4.2/5.0
 
@@ -247,6 +272,7 @@ Multi-compartment desk organizer for stationery, accessories and small devices.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -257,6 +283,7 @@ Multi-compartment desk organizer for stationery, accessories and small devices.
 **Brand:** DeskMate
 **SKU:** AL-014
 **Price:** ₹899.00
+**Refund Allowance:** ₹809.10
 **Availability:** In Stock
 **Customer Rating:** 4.1/5.0
 
@@ -266,6 +293,7 @@ Quiet USB-powered desk fan with three speed settings and adjustable tilt.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -276,6 +304,7 @@ Quiet USB-powered desk fan with three speed settings and adjustable tilt.
 **Brand:** FitLife
 **SKU:** AL-015
 **Price:** ₹3,499.00
+**Refund Allowance:** ₹3,149.10
 **Availability:** Low Stock
 **Customer Rating:** 4.4/5.0
 
@@ -285,6 +314,7 @@ Portable percussion massage device with four attachments and multiple speed leve
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -295,6 +325,7 @@ Portable percussion massage device with four attachments and multiple speed leve
 **Brand:** ShopiFyX
 **SKU:** ELX-001
 **Price:** ₹3,999.00
+**Refund Allowance:** ₹3,599.10
 **Availability:** In Stock
 **Customer Rating:** 4.5/5.0
 
@@ -304,6 +335,7 @@ Wireless ANC earbuds with transparency mode, dual microphones and charging case.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -314,6 +346,7 @@ Wireless ANC earbuds with transparency mode, dual microphones and charging case.
 **Brand:** ShopiFyX
 **SKU:** ELX-002
 **Price:** ₹2,999.00
+**Refund Allowance:** ₹2,699.10
 **Availability:** In Stock
 **Customer Rating:** 4.4/5.0
 
@@ -323,6 +356,7 @@ Portable 20W Bluetooth speaker with deep bass, USB-C charging and IPX6 water res
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -333,6 +367,7 @@ Portable 20W Bluetooth speaker with deep bass, USB-C charging and IPX6 water res
 **Brand:** NovaTech
 **SKU:** ELX-003
 **Price:** ₹5,499.00
+**Refund Allowance:** ₹4,949.10
 **Availability:** In Stock
 **Customer Rating:** 4.3/5.0
 
@@ -342,6 +377,7 @@ AMOLED smartwatch with heart-rate tracking, sleep monitoring and seven-day batte
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -352,6 +388,7 @@ AMOLED smartwatch with heart-rate tracking, sleep monitoring and seven-day batte
 **Brand:** NovaTech
 **SKU:** ELX-004
 **Price:** ₹1,999.00
+**Refund Allowance:** ₹1,799.10
 **Availability:** In Stock
 **Customer Rating:** 4.2/5.0
 
@@ -361,6 +398,7 @@ Lightweight fitness band with activity tracking, sleep analysis and notification
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -371,6 +409,7 @@ Lightweight fitness band with activity tracking, sleep analysis and notification
 **Brand:** PixelCore
 **SKU:** ELX-005
 **Price:** ₹2,499.00
+**Refund Allowance:** ₹2,249.10
 **Availability:** In Stock
 **Customer Rating:** 4.4/5.0
 
@@ -380,6 +419,7 @@ Slim wireless keyboard with quiet keys, multi-device connectivity and rechargeab
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -390,6 +430,7 @@ Slim wireless keyboard with quiet keys, multi-device connectivity and rechargeab
 **Brand:** PixelCore
 **SKU:** ELX-006
 **Price:** ₹1,499.00
+**Refund Allowance:** ₹1,349.10
 **Availability:** In Stock
 **Customer Rating:** 4.3/5.0
 
@@ -399,6 +440,7 @@ Ergonomic wireless mouse with adjustable DPI and silent-click switches.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -409,6 +451,7 @@ Ergonomic wireless mouse with adjustable DPI and silent-click switches.
 **Brand:** VoltEdge
 **SKU:** ELX-007
 **Price:** ₹2,299.00
+**Refund Allowance:** ₹2,069.10
 **Availability:** In Stock
 **Customer Rating:** 4.6/5.0
 
@@ -418,6 +461,7 @@ Compact 65W USB-C GaN charger supporting laptops, tablets and smartphones.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -428,6 +472,7 @@ Compact 65W USB-C GaN charger supporting laptops, tablets and smartphones.
 **Brand:** VoltEdge
 **SKU:** ELX-008
 **Price:** ₹1,799.00
+**Refund Allowance:** ₹1,619.10
 **Availability:** In Stock
 **Customer Rating:** 4.4/5.0
 
@@ -437,6 +482,7 @@ Fast-charging power bank with USB-C input/output and dual-device charging.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -447,6 +493,7 @@ Fast-charging power bank with USB-C input/output and dual-device charging.
 **Brand:** ViewMax
 **SKU:** ELX-009
 **Price:** ₹18,999.00
+**Refund Allowance:** ₹17,099.10
 **Availability:** In Stock
 **Customer Rating:** 4.5/5.0
 
@@ -456,6 +503,7 @@ Fast-charging power bank with USB-C input/output and dual-device charging.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -466,6 +514,7 @@ Fast-charging power bank with USB-C input/output and dual-device charging.
 **Brand:** ViewMax
 **SKU:** ELX-010
 **Price:** ₹3,499.00
+**Refund Allowance:** ₹3,149.10
 **Availability:** In Stock
 **Customer Rating:** 4.2/5.0
 
@@ -475,6 +524,7 @@ Fast-charging power bank with USB-C input/output and dual-device charging.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -485,6 +535,7 @@ Fast-charging power bank with USB-C input/output and dual-device charging.
 **Brand:** EchoTune
 **SKU:** ELX-011
 **Price:** ₹6,999.00
+**Refund Allowance:** ₹6,299.10
 **Availability:** In Stock
 **Customer Rating:** 4.5/5.0
 
@@ -494,6 +545,7 @@ Over-ear wireless headphones with hybrid active noise cancellation and 40-hour b
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -504,6 +556,7 @@ Over-ear wireless headphones with hybrid active noise cancellation and 40-hour b
 **Brand:** EchoTune
 **SKU:** ELX-012
 **Price:** ₹2,499.00
+**Refund Allowance:** ₹2,249.10
 **Availability:** In Stock
 **Customer Rating:** 4.1/5.0
 
@@ -513,6 +566,7 @@ Compact true-wireless earbuds with low-latency mode and IPX5 protection.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -523,6 +577,7 @@ Compact true-wireless earbuds with low-latency mode and IPX5 protection.
 **Brand:** HomeLink
 **SKU:** ELX-013
 **Price:** ₹999.00
+**Refund Allowance:** ₹899.10
 **Availability:** In Stock
 **Customer Rating:** 4.3/5.0
 
@@ -532,6 +587,7 @@ Wi-Fi smart plug with scheduling, energy monitoring and voice assistant support.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -542,6 +598,7 @@ Wi-Fi smart plug with scheduling, energy monitoring and voice assistant support.
 **Brand:** HomeLink
 **SKU:** ELX-014
 **Price:** ₹1,599.00
+**Refund Allowance:** ₹1,439.10
 **Availability:** In Stock
 **Customer Rating:** 4.2/5.0
 
@@ -551,6 +608,7 @@ Smart RGB LED strip with app control, music synchronization and adjustable brigh
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -561,6 +619,7 @@ Smart RGB LED strip with app control, music synchronization and adjustable brigh
 **Brand:** DriveSafe
 **SKU:** ELX-015
 **Price:** ₹4,499.00
+**Refund Allowance:** ₹4,049.10
 **Availability:** Low Stock
 **Customer Rating:** 4.0/5.0
 
@@ -570,6 +629,7 @@ Full HD car dash camera with night recording, loop recording and parking monitor
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -580,6 +640,7 @@ Full HD car dash camera with night recording, loop recording and parking monitor
 **Brand:** UrbanStep
 **SKU:** FW-001
 **Price:** ₹2,999.00
+**Refund Allowance:** ₹2,699.10
 **Availability:** In Stock
 **Customer Rating:** 4.4/5.0
 
@@ -589,6 +650,7 @@ Lightweight running shoes with breathable mesh upper and cushioned sole.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -599,6 +661,7 @@ Lightweight running shoes with breathable mesh upper and cushioned sole.
 **Brand:** UrbanStep
 **SKU:** FW-002
 **Price:** ₹3,999.00
+**Refund Allowance:** ₹3,599.10
 **Availability:** In Stock
 **Customer Rating:** 4.3/5.0
 
@@ -608,6 +671,7 @@ All-terrain shoes with reinforced toe protection and high-grip outsole.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -618,6 +682,7 @@ All-terrain shoes with reinforced toe protection and high-grip outsole.
 **Brand:** UrbanStep
 **SKU:** FW-003
 **Price:** ₹2,499.00
+**Refund Allowance:** ₹2,249.10
 **Availability:** In Stock
 **Customer Rating:** 4.5/5.0
 
@@ -627,6 +692,7 @@ Casual sneakers designed for daily wear with memory-foam footbed.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -637,6 +703,7 @@ Casual sneakers designed for daily wear with memory-foam footbed.
 **Brand:** ModeCraft
 **SKU:** FW-004
 **Price:** ₹2,799.00
+**Refund Allowance:** ₹2,519.10
 **Availability:** In Stock
 **Customer Rating:** 4.2/5.0
 
@@ -646,6 +713,7 @@ Regular-fit denim jacket with durable cotton construction and metal buttons.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -656,6 +724,7 @@ Regular-fit denim jacket with durable cotton construction and metal buttons.
 **Brand:** ModeCraft
 **SKU:** FW-005
 **Price:** ₹1,899.00
+**Refund Allowance:** ₹1,709.10
 **Availability:** In Stock
 **Customer Rating:** 4.5/5.0
 
@@ -665,6 +734,7 @@ Soft fleece oversized hoodie suitable for casual everyday wear.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -675,6 +745,7 @@ Soft fleece oversized hoodie suitable for casual everyday wear.
 **Brand:** ModeCraft
 **SKU:** FW-006
 **Price:** ₹799.00
+**Refund Allowance:** ₹719.10
 **Availability:** In Stock
 **Customer Rating:** 4.4/5.0
 
@@ -684,6 +755,7 @@ Regular-fit 100% cotton T-shirt with soft finish and reinforced collar.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -694,6 +766,7 @@ Regular-fit 100% cotton T-shirt with soft finish and reinforced collar.
 **Brand:** ModeCraft
 **SKU:** FW-007
 **Price:** ₹1,299.00
+**Refund Allowance:** ₹1,169.10
 **Availability:** In Stock
 **Customer Rating:** 4.3/5.0
 
@@ -703,6 +776,7 @@ Moisture-wicking polo shirt designed for active and casual use.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -713,6 +787,7 @@ Moisture-wicking polo shirt designed for active and casual use.
 **Brand:** StreetLine
 **SKU:** FW-008
 **Price:** ₹1,999.00
+**Refund Allowance:** ₹1,799.10
 **Availability:** In Stock
 **Customer Rating:** 4.2/5.0
 
@@ -722,6 +797,7 @@ Relaxed cargo trousers with multiple utility pockets and stretch fabric.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -732,6 +808,7 @@ Relaxed cargo trousers with multiple utility pockets and stretch fabric.
 **Brand:** StreetLine
 **SKU:** FW-009
 **Price:** ₹1,799.00
+**Refund Allowance:** ₹1,619.10
 **Availability:** In Stock
 **Customer Rating:** 4.3/5.0
 
@@ -741,6 +818,7 @@ Slim-fit stretch chinos designed for office and casual styling.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -751,6 +829,7 @@ Slim-fit stretch chinos designed for office and casual styling.
 **Brand:** StreetLine
 **SKU:** FW-010
 **Price:** ₹1,499.00
+**Refund Allowance:** ₹1,349.10
 **Availability:** In Stock
 **Customer Rating:** 4.5/5.0
 
@@ -760,6 +839,7 @@ Comfort-fit joggers with elastic waistband and breathable cotton blend.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -770,6 +850,7 @@ Comfort-fit joggers with elastic waistband and breathable cotton blend.
 **Brand:** UrbanStep
 **SKU:** FW-011
 **Price:** ₹1,399.00
+**Refund Allowance:** ₹1,259.10
 **Availability:** In Stock
 **Customer Rating:** 4.1/5.0
 
@@ -779,6 +860,7 @@ Cushioned everyday sandals with adjustable straps and anti-slip sole.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -789,6 +871,7 @@ Cushioned everyday sandals with adjustable straps and anti-slip sole.
 **Brand:** ModeCraft
 **SKU:** FW-012
 **Price:** ₹2,199.00
+**Refund Allowance:** ₹1,979.10
 **Availability:** In Stock
 **Customer Rating:** 4.4/5.0
 
@@ -798,6 +881,7 @@ Breathable linen-blend shirt with relaxed fit for warm-weather wear.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -808,6 +892,7 @@ Breathable linen-blend shirt with relaxed fit for warm-weather wear.
 **Brand:** StreetLine
 **SKU:** FW-013
 **Price:** ₹3,299.00
+**Refund Allowance:** ₹2,969.10
 **Availability:** Low Stock
 **Customer Rating:** 4.3/5.0
 
@@ -817,6 +902,7 @@ Lightweight bomber jacket with ribbed cuffs and water-resistant outer layer.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -827,6 +913,7 @@ Lightweight bomber jacket with ribbed cuffs and water-resistant outer layer.
 **Brand:** UrbanStep
 **SKU:** FW-014
 **Price:** ₹2,699.00
+**Refund Allowance:** ₹2,429.10
 **Availability:** In Stock
 **Customer Rating:** 4.4/5.0
 
@@ -836,6 +923,7 @@ Flexible knitted walking shoes with lightweight cushioning and breathable upper.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -846,6 +934,7 @@ Flexible knitted walking shoes with lightweight cushioning and breathable upper.
 **Brand:** ModeCraft
 **SKU:** FW-015
 **Price:** ₹4,999.00
+**Refund Allowance:** ₹4,499.10
 **Availability:** Low Stock
 **Customer Rating:** 4.5/5.0
 
@@ -855,6 +944,7 @@ Insulated puffer jacket with water-resistant shell and lightweight filling.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -865,6 +955,7 @@ Insulated puffer jacket with water-resistant shell and lightweight filling.
 **Brand:** KitchenPro
 **SKU:** HK-001
 **Price:** ₹4,999.00
+**Refund Allowance:** ₹4,499.10
 **Availability:** In Stock
 **Customer Rating:** 4.5/5.0
 
@@ -874,6 +965,7 @@ Insulated puffer jacket with water-resistant shell and lightweight filling.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -884,6 +976,7 @@ Insulated puffer jacket with water-resistant shell and lightweight filling.
 **Brand:** KitchenPro
 **SKU:** HK-002
 **Price:** ₹6,999.00
+**Refund Allowance:** ₹6,299.10
 **Availability:** Low Stock
 **Customer Rating:** 4.6/5.0
 
@@ -893,6 +986,7 @@ Insulated puffer jacket with water-resistant shell and lightweight filling.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -903,6 +997,7 @@ Insulated puffer jacket with water-resistant shell and lightweight filling.
 **Brand:** KitchenPro
 **SKU:** HK-003
 **Price:** ₹1,599.00
+**Refund Allowance:** ₹1,439.10
 **Availability:** In Stock
 **Customer Rating:** 4.4/5.0
 
@@ -912,6 +1007,7 @@ Stainless-steel electric kettle with automatic shut-off and boil-dry protection.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -922,6 +1018,7 @@ Stainless-steel electric kettle with automatic shut-off and boil-dry protection.
 **Brand:** KitchenPro
 **SKU:** HK-004
 **Price:** ₹3,299.00
+**Refund Allowance:** ₹2,969.10
 **Availability:** In Stock
 **Customer Rating:** 4.3/5.0
 
@@ -931,6 +1028,7 @@ Stainless-steel electric kettle with automatic shut-off and boil-dry protection.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -941,6 +1039,7 @@ Stainless-steel electric kettle with automatic shut-off and boil-dry protection.
 **Brand:** BrewMaster
 **SKU:** HK-005
 **Price:** ₹2,999.00
+**Refund Allowance:** ₹2,699.10
 **Availability:** In Stock
 **Customer Rating:** 4.2/5.0
 
@@ -950,6 +1049,7 @@ Drip coffee maker with reusable filter and programmable brewing timer.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -960,6 +1060,7 @@ Drip coffee maker with reusable filter and programmable brewing timer.
 **Brand:** BrewMaster
 **SKU:** HK-006
 **Price:** ₹1,799.00
+**Refund Allowance:** ₹1,619.10
 **Availability:** In Stock
 **Customer Rating:** 4.4/5.0
 
@@ -969,6 +1070,7 @@ Automatic milk frother with hot and cold foam settings.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -979,6 +1081,7 @@ Automatic milk frother with hot and cold foam settings.
 **Brand:** CleanHome
 **SKU:** HK-007
 **Price:** ₹8,999.00
+**Refund Allowance:** ₹8,099.10
 **Availability:** In Stock
 **Customer Rating:** 4.3/5.0
 
@@ -988,6 +1091,7 @@ Cordless stick vacuum with multi-surface cleaning and removable battery.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -998,6 +1102,7 @@ Cordless stick vacuum with multi-surface cleaning and removable battery.
 **Brand:** CleanHome
 **SKU:** HK-008
 **Price:** ₹15,999.00
+**Refund Allowance:** ₹14,399.10
 **Availability:** Low Stock
 **Customer Rating:** 4.2/5.0
 
@@ -1007,6 +1112,7 @@ Compact robot vacuum with scheduled cleaning and automatic return-to-dock.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -1017,6 +1123,7 @@ Compact robot vacuum with scheduled cleaning and automatic return-to-dock.
 **Brand:** HomeNest
 **SKU:** HK-009
 **Price:** ₹2,199.00
+**Refund Allowance:** ₹1,979.10
 **Availability:** In Stock
 **Customer Rating:** 4.4/5.0
 
@@ -1026,6 +1133,7 @@ Dimmable smart table lamp with app control and adjustable color temperature.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -1036,6 +1144,7 @@ Dimmable smart table lamp with app control and adjustable color temperature.
 **Brand:** HomeNest
 **SKU:** HK-010
 **Price:** ₹1,299.00
+**Refund Allowance:** ₹1,169.10
 **Availability:** In Stock
 **Customer Rating:** 4.5/5.0
 
@@ -1045,6 +1154,7 @@ Ergonomic memory foam pillow designed for balanced neck and head support.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -1055,6 +1165,7 @@ Ergonomic memory foam pillow designed for balanced neck and head support.
 **Brand:** HomeNest
 **SKU:** HK-011
 **Price:** ₹3,499.00
+**Refund Allowance:** ₹3,149.10
 **Availability:** In Stock
 **Customer Rating:** 4.3/5.0
 
@@ -1064,6 +1175,7 @@ Breathable weighted blanket designed for comfortable year-round use.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -1074,6 +1186,7 @@ Breathable weighted blanket designed for comfortable year-round use.
 **Brand:** KitchenPro
 **SKU:** HK-012
 **Price:** ₹4,499.00
+**Refund Allowance:** ₹4,049.10
 **Availability:** In Stock
 **Customer Rating:** 4.4/5.0
 
@@ -1083,6 +1196,7 @@ Seven-piece non-stick cookware set with induction-compatible bases.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -1093,6 +1207,7 @@ Seven-piece non-stick cookware set with induction-compatible bases.
 **Brand:** BrewMaster
 **SKU:** HK-013
 **Price:** ₹1,899.00
+**Refund Allowance:** ₹1,709.10
 **Availability:** In Stock
 **Customer Rating:** 4.2/5.0
 
@@ -1102,6 +1217,7 @@ Two-slice toaster with browning control, reheat and defrost functions.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -1112,6 +1228,7 @@ Two-slice toaster with browning control, reheat and defrost functions.
 **Brand:** CleanHome
 **SKU:** HK-014
 **Price:** ₹2,999.00
+**Refund Allowance:** ₹2,699.10
 **Availability:** In Stock
 **Customer Rating:** 4.1/5.0
 
@@ -1121,6 +1238,7 @@ Compact handheld steam cleaner for kitchens, bathrooms and hard surfaces.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---
@@ -1131,6 +1249,7 @@ Compact handheld steam cleaner for kitchens, bathrooms and hard surfaces.
 **Brand:** HomeNest
 **SKU:** HK-015
 **Price:** ₹899.00
+**Refund Allowance:** ₹809.10
 **Availability:** In Stock
 **Customer Rating:** 4.4/5.0
 
@@ -1140,6 +1259,7 @@ Precision kitchen scale with tare function and measurements up to 10kg.
 **Product Support & Policies:**
 - Warranty: 1-Year manufacturer warranty applies for electronics and kitchen appliances; standard return/exchange policies apply for fashion items.
 - Return Window: 7-day hassle-free return/exchange window from date of delivery if item is in original condition.
+- Refund Allowance: 90% of the listed catalog price after a 10% processing deduction. The refund-agent must extract this amount and must not refund the original order basket total or the full item price.
 - Queries regarding order tracking, shipment status, replacement, or warranty claims should reference this product name and SKU.
 
 ---

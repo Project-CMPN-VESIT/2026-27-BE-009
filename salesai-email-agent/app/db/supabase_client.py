@@ -68,7 +68,7 @@ def get_connection() -> Optional[Any]:
         return None
 
     try:
-        conn = psycopg2.connect(dsn=db_url)
+        conn = psycopg2.connect(dsn=db_url, connect_timeout=10)
         logger.debug("PostgreSQL connection established")
         return conn
     except OperationalError as exc:

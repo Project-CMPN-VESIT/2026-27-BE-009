@@ -172,8 +172,11 @@ def format_customer_memory(
             v_parts.append(f"DefectType: {vc.defect_type}")
         if vc.severity_level and vc.severity_level != "none":
             v_parts.append(f"Severity: {vc.severity_level}")
-        if vc.defect_area_ratio > 0:
-            v_parts.append(f"DAR: {vc.defect_area_ratio:.2f}")
+        dar_value = vc.defect_area_ratio if vc.defect_area_ratio is not None else 0.0
+        if dar_value > 0:
+            v_parts.append(f"DAR: {dar_value:.2f}")
+        if getattr(vc, "vision_available", True) is False:
+            v_parts.append("Vision: unavailable")
         if vc.diagnostic_reasoning:
             v_parts.append(f"Diagnostic: {vc.diagnostic_reasoning[:60]}")
         elif vc.defect_description:

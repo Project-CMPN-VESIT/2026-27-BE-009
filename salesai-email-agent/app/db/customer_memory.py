@@ -21,6 +21,21 @@ from app.memory.memory_models import (
 LOGGER = logging.getLogger(__name__)
 
 
+def coerce_defect_area_ratio(value: Any) -> Optional[float]:
+    """Normalize DAR to a 0.0-1.0 ratio for API and persistence."""
+    if value is None or value == "":
+        return None
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return None
+    if number < 0:
+        return None
+    if number > 1.0 and number <= 100.0:
+        return round(number / 100.0, 4)
+    return round(min(number, 1.0), 4)
+
+
 def normalize_email(email: str) -> str:
     """Normalize customer email for deterministic identity resolution.
     
@@ -80,6 +95,7 @@ def ensure_memory_tables_exist() -> None:
             severity TEXT DEFAULT 'none',
             defect_area_ratio DOUBLE PRECISION DEFAULT 0.0,
             suggested_action TEXT DEFAULT '',
+            agent_decision TEXT DEFAULT '',
             created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
         );
@@ -91,6 +107,7 @@ def ensure_memory_tables_exist() -> None:
         ALTER TABLE customer_issues ADD COLUMN IF NOT EXISTS severity TEXT DEFAULT 'none';
         ALTER TABLE customer_issues ADD COLUMN IF NOT EXISTS defect_area_ratio DOUBLE PRECISION DEFAULT 0.0;
         ALTER TABLE customer_issues ADD COLUMN IF NOT EXISTS suggested_action TEXT DEFAULT '';
+        ALTER TABLE customer_issues ADD COLUMN IF NOT EXISTS agent_decision TEXT DEFAULT '';
         """,
         """
         CREATE INDEX IF NOT EXISTS idx_customer_issues_customer_id ON customer_issues (customer_id);
@@ -389,11 +406,12 @@ def get_customer_issues(customer_id: Union[str, int], status: Optional[str] = No
         return []
 
     try:
+        ensure_memory_tables_exist()
         with conn.cursor() as cursor:
             query = """
             SELECT id, customer_id, issue_title, issue_description, status, priority,
                    resolution_notes, order_number, defect_type, severity, defect_area_ratio,
-                   suggested_action, created_at, updated_at
+                   suggested_action, agent_decision, created_at, updated_at
             FROM customer_issues
             WHERE customer_id::text = %s::text
             """
@@ -419,16 +437,47 @@ def get_customer_issues(customer_id: Union[str, int], status: Optional[str] = No
                         order_number=r[7] or "",
                         defect_type=r[8] or "none",
                         severity=r[9] or "none",
-                        defect_area_ratio=float(r[10] or 0.0),
+                        defect_area_ratio=coerce_defect_area_ratio(r[10]),
                         suggested_action=r[11] or "",
-                        created_at=r[12],
-                        updated_at=r[13],
+                        agent_decision=r[12] or "",
+                        created_at=r[13],
+                        updated_at=r[14],
                     )
                 )
             return issues
     except Exception as exc:
         LOGGER.error("Failed get_customer_issues(customer_id=%s): %s", customer_id, exc)
         return []
+    finally:
+        conn.close()
+
+
+def has_received_return(customer_id: Union[str, int], order_number: str) -> bool:
+    """Return whether the customer's return has been explicitly received."""
+    if not customer_id or not order_number:
+        return False
+
+    conn = get_connection()
+    if conn is None:
+        return False
+
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute(
+                """
+                SELECT 1
+                FROM customer_issues
+                WHERE customer_id::text = %s::text
+                  AND order_number = %s
+                  AND status = 'received'
+                LIMIT 1
+                """,
+                (str(customer_id), order_number.strip()),
+            )
+            return cursor.fetchone() is not None
+    except Exception as exc:
+        LOGGER.error("Failed to check received return for customer_id=%s order=%s: %s", customer_id, order_number, exc)
+        return False
     finally:
         conn.close()
 
@@ -442,9 +491,10 @@ def create_or_update_customer_issue(
     resolution_notes: str = "",
     order_number: str = "",
     defect_type: str = "none",
-    severity: str = "none",
-    defect_area_ratio: float = 0.0,
+    severity: Optional[str] = None,
+    defect_area_ratio: Optional[float] = None,
     suggested_action: str = "",
+    agent_decision: str = "",
 ) -> Optional[Union[str, int]]:
     """Create a new customer issue or update an existing one deterministically."""
     if not customer_id or not issue_title or str(customer_id) in {"0", ""}:
@@ -456,25 +506,62 @@ def create_or_update_customer_issue(
 
     now = datetime.now(timezone.utc)
     clean_title = issue_title.strip()
+    dar_value = coerce_defect_area_ratio(defect_area_ratio)
+    dar_provided = dar_value is not None
+    severity_value = (severity or "").strip()
+    decision_value = (agent_decision or "").strip()
+    order_value = (order_number or "").strip()
+    status_rank = {
+        "open": 0,
+        "under_review": 1,
+        "options_presented": 1,
+        "received": 2,
+        "exchange_pending": 2,
+        "refund_initiated": 3,
+        "resolved": 4,
+        "closed": 4,
+    }
 
     try:
         ensure_memory_tables_exist()
         with conn.cursor() as cursor:
-            # Check for existing issue with matching or similar title for this customer
-            cursor.execute(
-                """
-                SELECT id, status
-                FROM customer_issues
-                WHERE customer_id::text = %s::text AND (LOWER(issue_title) = LOWER(%s) OR (status NOT IN ('resolved', 'closed') AND LOWER(issue_title) LIKE %s))
-                ORDER BY updated_at DESC
-                LIMIT 1
-                """,
-                (str(customer_id), clean_title, f"%{clean_title[:15].lower()}%"),
-            )
-            row = cursor.fetchone()
+            row = None
+            if order_value:
+                cursor.execute(
+                    """
+                    SELECT id, status
+                    FROM customer_issues
+                    WHERE customer_id::text = %s::text
+                      AND LOWER(order_number) = LOWER(%s)
+                      AND status NOT IN ('resolved', 'closed')
+                    ORDER BY updated_at DESC
+                    LIMIT 1
+                    """,
+                    (str(customer_id), order_value),
+                )
+                row = cursor.fetchone()
+            if row is None:
+                cursor.execute(
+                    """
+                    SELECT id, status
+                    FROM customer_issues
+                    WHERE customer_id::text = %s::text
+                      AND LOWER(issue_title) = LOWER(%s)
+                    ORDER BY updated_at DESC
+                    LIMIT 1
+                    """,
+                    (str(customer_id), clean_title),
+                )
+                row = cursor.fetchone()
 
             if row:
                 issue_id = row[0]
+                existing_status = (row[1] or "open").strip().lower()
+                incoming_status = (status or "open").strip().lower()
+                if status_rank.get(existing_status, 0) > status_rank.get(incoming_status, 0):
+                    status = existing_status
+                    decision_value = ""
+                    suggested_action = ""
                 cursor.execute(
                     """
                     UPDATE customer_issues
@@ -484,17 +571,31 @@ def create_or_update_customer_issue(
                         resolution_notes = COALESCE(NULLIF(%s, ''), resolution_notes),
                         order_number = COALESCE(NULLIF(%s, ''), order_number),
                         defect_type = COALESCE(NULLIF(%s, 'none'), defect_type),
-                        severity = COALESCE(NULLIF(%s, 'none'), severity),
-                        defect_area_ratio = CASE WHEN %s > 0 THEN %s ELSE defect_area_ratio END,
+                        severity = COALESCE(NULLIF(%s, ''), severity),
+                        defect_area_ratio = CASE WHEN %s THEN %s ELSE defect_area_ratio END,
                         suggested_action = COALESCE(NULLIF(%s, ''), suggested_action),
+                        agent_decision = COALESCE(NULLIF(%s, ''), agent_decision),
                         updated_at = %s
                     WHERE id::text = %s::text
                     """,
-                    (status, priority, description.strip(), resolution_notes.strip(), order_number.strip(),
-                     defect_type, severity, defect_area_ratio, defect_area_ratio, suggested_action.strip(), now, str(issue_id)),
+                    (
+                        status,
+                        priority,
+                        description.strip(),
+                        resolution_notes.strip(),
+                        order_number.strip(),
+                        defect_type,
+                        severity_value,
+                        dar_provided,
+                        dar_value if dar_provided else 0.0,
+                        suggested_action.strip(),
+                        decision_value,
+                        now,
+                        str(issue_id),
+                    ),
                 )
                 conn.commit()
-                LOGGER.info("Updated customer issue id=%s status=%s", issue_id, status)
+                LOGGER.info("Updated customer issue id=%s status=%s decision=%s dar=%s", issue_id, status, decision_value, dar_value)
                 return issue_id
 
             # Insert new issue
@@ -503,14 +604,27 @@ def create_or_update_customer_issue(
                 INSERT INTO customer_issues (
                     customer_id, issue_title, issue_description, status, priority,
                     resolution_notes, order_number, defect_type, severity, defect_area_ratio,
-                    suggested_action, created_at, updated_at
+                    suggested_action, agent_decision, created_at, updated_at
                 )
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 RETURNING id
                 """,
-                (str(customer_id), clean_title, description.strip(), status, priority,
-                 resolution_notes.strip(), order_number.strip(), defect_type, severity,
-                 defect_area_ratio, suggested_action.strip(), now, now),
+                (
+                    str(customer_id),
+                    clean_title,
+                    description.strip(),
+                    status,
+                    priority,
+                    resolution_notes.strip(),
+                    order_number.strip(),
+                    defect_type,
+                    severity_value or "none",
+                    dar_value if dar_provided else 0.0,
+                    suggested_action.strip(),
+                    decision_value,
+                    now,
+                    now,
+                ),
             )
             new_id = cursor.fetchone()[0]
             conn.commit()
@@ -537,7 +651,8 @@ def get_all_customer_issues(status: Optional[str] = None, limit: int = 100) -> L
             query = """
             SELECT ci.id, ci.customer_id, ci.issue_title, ci.issue_description, ci.status,
                    ci.priority, ci.resolution_notes, ci.order_number, ci.defect_type,
-                   ci.severity, ci.defect_area_ratio, ci.suggested_action, ci.created_at, ci.updated_at,
+                   ci.severity, ci.defect_area_ratio, ci.suggested_action, ci.agent_decision,
+                   ci.created_at, ci.updated_at,
                    c.email AS customer_email, c.name AS customer_name
             FROM customer_issues ci
             LEFT JOIN customers c ON ci.customer_id::text = c.id::text
@@ -553,6 +668,9 @@ def get_all_customer_issues(status: Optional[str] = None, limit: int = 100) -> L
             rows = cursor.fetchall()
             results = []
             for r in rows:
+                dar_value = coerce_defect_area_ratio(r[10])
+                dar_percent = round((dar_value or 0.0) * 100.0, 1)
+                decision = (r[12] or "").strip() or (r[11] or "")
                 results.append({
                     "id": str(r[0]),
                     "customer_id": str(r[1]),
@@ -564,12 +682,14 @@ def get_all_customer_issues(status: Optional[str] = None, limit: int = 100) -> L
                     "order_number": r[7] or "",
                     "defect_type": r[8] or "none",
                     "severity": r[9] or "none",
-                    "defect_area_ratio": float(r[10] or 0.0),
+                    "defect_area_ratio": dar_value if dar_value is not None else 0.0,
+                    "dar_percent": dar_percent,
                     "suggested_action": r[11] or "",
-                    "created_at": r[12].isoformat() if r[12] else None,
-                    "updated_at": r[13].isoformat() if r[13] else None,
-                    "customer_email": r[14] or "",
-                    "customer_name": r[15] or "",
+                    "agent_decision": decision,
+                    "created_at": r[13].isoformat() if r[13] else None,
+                    "updated_at": r[14].isoformat() if r[14] else None,
+                    "customer_email": r[15] or "",
+                    "customer_name": r[16] or "",
                 })
             return results
     except Exception as exc:
@@ -595,15 +715,38 @@ def update_issue_status_by_id(
     now = datetime.now(timezone.utc)
     try:
         with conn.cursor() as cursor:
+            notes = resolution_notes.strip()
+            extra_decision = ""
+            extra_action = ""
+            if (status or "").strip().lower() == "received":
+                extra_decision = "return_received_awaiting_refund_agent"
+                extra_action = "Refund agent will pay published SKU allowance"
             cursor.execute(
                 """
                 UPDATE customer_issues
                 SET status = %s,
                     resolution_notes = COALESCE(NULLIF(%s, ''), resolution_notes),
+                    agent_decision = CASE
+                        WHEN %s <> '' THEN %s
+                        ELSE agent_decision
+                    END,
+                    suggested_action = CASE
+                        WHEN %s <> '' THEN %s
+                        ELSE suggested_action
+                    END,
                     updated_at = %s
                 WHERE id::text = %s::text
                 """,
-                (status, resolution_notes.strip(), now, str(issue_id)),
+                (
+                    status,
+                    notes,
+                    extra_decision,
+                    extra_decision,
+                    extra_action,
+                    extra_action,
+                    now,
+                    str(issue_id),
+                ),
             )
             updated = cursor.rowcount > 0
             conn.commit()

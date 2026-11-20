@@ -36,6 +36,9 @@ class Settings:
 
     groq_api_key: str = os.getenv("GROQ_API_KEY", "")
     groq_model: str = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
+    groq_vision_model: str = os.getenv("GROQ_VISION_MODEL", "qwen/qwen3.8-27b")
+    vision_dar_auto_threshold: float = float(os.getenv("VISION_DAR_AUTO_THRESHOLD", "0.15"))
+    vision_confidence_auto_threshold: float = float(os.getenv("VISION_CONFIDENCE_AUTO_THRESHOLD", "0.70"))
 
     chroma_path: str = os.getenv("CHROMA_PATH", "./data/chroma")
     chroma_collection: str = os.getenv("CHROMA_COLLECTION", "salesai_knowledge")

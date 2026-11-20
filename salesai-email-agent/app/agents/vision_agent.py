@@ -22,6 +22,7 @@ LOGGER = logging.getLogger(__name__)
 
 # Maximum token budget / dimensions for vision processing
 MAX_IMAGE_DIM = 1024
+MIN_IMAGE_DIM = 32  # Groq vision rejects images smaller than 32px on either side
 MAX_PROMPT_CHARS = 1200
 
 
@@ -50,12 +51,27 @@ def _prepare_image_bytes(raw_b64: str) -> Optional[bytes]:
         try:
             from PIL import Image
             img = Image.open(io.BytesIO(image_bytes))
-            if img.mode in ("RGBA", "P"):
+            if img.mode != "RGB":
                 img = img.convert("RGB")
-            
+
+            resized = False
+            if img.width < MIN_IMAGE_DIM or img.height < MIN_IMAGE_DIM:
+                scale = max(
+                    MIN_IMAGE_DIM / max(img.width, 1),
+                    MIN_IMAGE_DIM / max(img.height, 1),
+                )
+                img = img.resize(
+                    (max(MIN_IMAGE_DIM, int(img.width * scale)), max(MIN_IMAGE_DIM, int(img.height * scale))),
+                    Image.Resampling.NEAREST,
+                )
+                resized = True
+
             # Downscale if larger than MAX_IMAGE_DIM
             if img.width > MAX_IMAGE_DIM or img.height > MAX_IMAGE_DIM:
                 img.thumbnail((MAX_IMAGE_DIM, MAX_IMAGE_DIM), Image.Resampling.LANCZOS)
+                resized = True
+
+            if resized:
                 out_io = io.BytesIO()
                 img.save(out_io, format="JPEG", quality=85)
                 return out_io.getvalue()
@@ -68,99 +84,110 @@ def _prepare_image_bytes(raw_b64: str) -> Optional[bytes]:
         return None
 
 
-def _call_gemini_vision(prompt: str, image_bytes_list: List[bytes], mime_types: List[str]) -> str:
-    """Invoke Gemini Vision with multimodal image parts."""
-    api_key = getattr(settings, "gemini_api_key", None) or os.getenv("GEMINI_API_KEY", "")
+DEFAULT_GROQ_VISION_MODEL = "qwen/qwen3.8-27b"
+
+
+def _image_data_uri(image_bytes: bytes, mime_type: str) -> str:
+    """Encode image bytes as a Groq-compatible data URI."""
+    mime = (mime_type or "image/jpeg").split(";")[0].strip().lower() or "image/jpeg"
+    if mime == "image/jpg":
+        mime = "image/jpeg"
+    encoded = base64.b64encode(image_bytes).decode("ascii")
+    return f"data:{mime};base64,{encoded}"
+
+
+def _call_groq_vision(prompt: str, image_bytes_list: List[bytes], mime_types: List[str]) -> str:
+    """Invoke Groq's free multimodal model with real image parts. No Gemini and no text-only fallback."""
+    api_key = getattr(settings, "groq_api_key", None) or os.getenv("GROQ_API_KEY", "")
     if not api_key or not image_bytes_list:
         return ""
 
-    model_candidates = [
-        "gemini-3.6-flash",
-        "gemini-2.0-flash",
-        "gemini-1.5-flash",
-    ]
-
-    # Try official google.genai client (v1)
-    try:
-        from google import genai
-        # pyrefly: ignore [missing-import]
-        from google.genai import types
-        client = genai.Client(api_key=api_key)
-
-        parts = []
-        for img_bytes, mime in zip(image_bytes_list, mime_types):
-            parts.append(types.Part.from_bytes(data=img_bytes, mime_type=mime or "image/jpeg"))
-        parts.append(prompt)
-
-        for model_name in model_candidates:
-            try:
-                response = client.models.generate_content(
-                    model=model_name,
-                    contents=parts,
-                )
-                text = (getattr(response, "text", "") or "").strip()
-                if text:
-                    return text
-            except Exception as e:
-                LOGGER.debug("google.genai vision attempt on %s failed: %s", model_name, e)
-                continue
-    except ImportError:
-        pass
-
-    # Try legacy google.generativeai client
-    try:
-        import google.generativeai as genai
-        genai.configure(api_key=api_key)
-
-        parts = []
-        for img_bytes, mime in zip(image_bytes_list, mime_types):
-            parts.append({"mime_type": mime or "image/jpeg", "data": img_bytes})
-        parts.append(prompt)
-
-        for model_name in model_candidates:
-            try:
-                model = genai.GenerativeModel(model_name)
-                response = model.generate_content(parts)
-                text = (getattr(response, "text", "") or "").strip()
-                if text:
-                    return text
-            except Exception as e:
-                LOGGER.debug("google.generativeai vision attempt on %s failed: %s", model_name, e)
-                continue
-    except ImportError:
-        LOGGER.debug("No Google GenAI package available for vision inference")
-
-    return ""
-
-
-def _call_groq_fallback(prompt: str) -> str:
-    """Invoke Groq text inference as fallback when Gemini vision quota is exhausted."""
-    api_key = os.getenv("GROQ_API_KEY", "").strip() or getattr(settings, "groq_api_key", "")
-    if not api_key:
+    if os.getenv("FAULT_VISION_DOWN", "0").lower() in ("1", "true", "yes"):
+        LOGGER.warning("FAULT_VISION_DOWN active; failing vision call")
         return ""
+
+    model_name = (
+        getattr(settings, "groq_vision_model", "")
+        or os.getenv("GROQ_VISION_MODEL", "")
+        or DEFAULT_GROQ_VISION_MODEL
+    ).strip() or DEFAULT_GROQ_VISION_MODEL
 
     try:
         from groq import Groq
-        client = Groq(api_key=api_key)
+    except ImportError:
+        LOGGER.error("Groq library not installed; vision analysis unavailable")
+        return ""
 
-        for model_name in ["openai/gpt-oss-20b", "qwen/qwen3.8-27b", "allam-2-7b"]:
-            try:
-                chat_completion = client.chat.completions.create(
-                    messages=[{"role": "user", "content": prompt}],
-                    model=model_name,
-                    temperature=0.1,
-                    max_tokens=400,
-                )
-                text = (chat_completion.choices[0].message.content or "").strip()
-                if text:
-                    return text
-            except Exception as exc:
-                LOGGER.debug("Groq fallback attempt on %s failed: %s", model_name, exc)
+    content: List[Dict[str, Any]] = [{"type": "text", "text": prompt}]
+    for img_bytes, mime in zip(image_bytes_list[:3], mime_types[:3]):
+        content.append(
+            {
+                "type": "image_url",
+                "image_url": {"url": _image_data_uri(img_bytes, mime)},
+            }
+        )
+
+    client = Groq(api_key=api_key)
+    messages = [{"role": "user", "content": content}]
+    last_error: Optional[Exception] = None
+
+    # Prefer JSON object mode so DAR/severity come back parseable. Older groq SDKs
+    # use max_tokens instead of max_completion_tokens.
+    request_variants = [
+        {"max_completion_tokens": 2048, "response_format": {"type": "json_object"}},
+        {"max_tokens": 2048, "response_format": {"type": "json_object"}},
+        {"max_completion_tokens": 2048},
+        {"max_tokens": 2048},
+    ]
+
+    for extra in request_variants:
+        try:
+            completion = client.chat.completions.create(
+                model=model_name,
+                temperature=0,
+                messages=messages,
+                **extra,
+            )
+            message = completion.choices[0].message if completion.choices else None
+            if not message:
                 continue
-    except Exception as e:
-        LOGGER.debug("Groq client error: %s", e)
+            text = (getattr(message, "content", None) or "").strip()
+            if not text:
+                text = (getattr(message, "reasoning", None) or "").strip()
+            if text:
+                served = getattr(completion, "model", "") or model_name
+                LOGGER.info("Groq vision model=%s returned %d chars", served, len(text))
+                return text
+        except TypeError as exc:
+            last_error = exc
+            continue
+        except Exception as exc:
+            last_error = exc
+            LOGGER.warning("Groq vision call on %s failed: %s", model_name, exc)
+            break
 
+    if last_error:
+        LOGGER.warning("Groq vision unavailable: %s", last_error)
     return ""
+
+
+def _call_gemini_vision(prompt: str, image_bytes_list: List[bytes], mime_types: List[str]) -> str:
+    """Deprecated alias: vision now uses Groq only."""
+    return _call_groq_vision(prompt, image_bytes_list, mime_types)
+
+
+def _normalize_dar(raw: Any, damaged: bool) -> float:
+    """Accept 0-1 ratios or 0-100 percents from the vision model."""
+    if raw is None or raw == "":
+        return 0.30 if damaged else 0.0
+    try:
+        text = str(raw).strip().replace("%", "")
+        number = float(text)
+    except (TypeError, ValueError):
+        return 0.25 if damaged else 0.0
+    if number > 1.0 and number <= 100.0:
+        number = number / 100.0
+    return max(0.0, min(1.0, number))
 
 
 
@@ -237,7 +264,7 @@ def analyze_email_images(
     customer_message: str = "",
     customer_orders: Optional[List[Dict[str, Any]]] = None,
 ) -> VisualContext:
-    """Analyze email image attachments using Gemini Vision grounded in catalog & order context."""
+    """Analyze email image attachments using Groq vision grounded in catalog & order context."""
     if not images:
         return VisualContext(has_images=False)
 
@@ -253,7 +280,18 @@ def analyze_email_images(
             mime_types.append(mime)
 
     if not image_bytes_list:
-        return VisualContext(has_images=True, image_count=len(images), summary="Attached images could not be parsed.")
+        return VisualContext(
+            has_images=True,
+            image_count=len(images),
+            summary="Attached images could not be parsed.",
+            visual_condition="unclear",
+            defect_type="none",
+            severity_level="none",
+            defect_area_ratio=0.0,
+            vision_available=False,
+            json_valid=False,
+            matches_order_history=None,
+        )
 
     # Format customer's placed orders into prompt for direct cross-reference
     orders_context_lines = []
@@ -287,7 +325,7 @@ def analyze_email_images(
         '  "visual_condition": "intact | damaged | torn | wrong_item | defective | unclear",\n'
         '  "defect_type": "<sole_delamination | torn_seam | cracked_grille | cracked_screen | wrong_item | cosmetic_scratch | stain | broken_part | none>",\n'
         '  "severity_level": "<severe_unusable | moderate_functional | minor_cosmetic | none>",\n'
-        '  "defect_area_ratio": <float between 0.0 and 1.0 representing percentage of visible product area affected by defect>,\n'
+        '  "defect_area_ratio": <float 0.0 to 1.0. Formula: (visible area of the defect) / (visible area of the product in the photo). This is NOT severity. A tiny crack on a large product can be 0.08; a smashed or mostly torn product must be 0.70 to 1.00. Do not default to 0.30-0.40. Examples: faint scratch 0.05-0.12; torn zipper or one strap 0.15-0.35; large tear, crushed face, or damage covering most of the item 0.60-0.90; item almost fully destroyed 0.90-1.00. Never cap at 0.40.>,\n'
         '  "diagnostic_reasoning": "<1-2 sentences technical reasoning describing physical defect location, severity, and cause>",\n'
         '  "defect_description": "<concise description of physical defect, tear, broken part, or none>",\n'
         '  "is_receipt_or_invoice": true | false,\n'
@@ -296,7 +334,9 @@ def analyze_email_images(
         "}"
     )
 
-    raw_response = _call_gemini_vision(prompt, image_bytes_list, mime_types) or _call_groq_fallback(prompt)
+    raw_response = _call_groq_vision(prompt, image_bytes_list, mime_types)
+    if not raw_response:
+        LOGGER.warning("Vision model returned no image analysis; failing honestly instead of guessing from text")
 
     if raw_response:
         json_str = _extract_json_block(raw_response)
@@ -306,16 +346,22 @@ def analyze_email_images(
                 det_product = data.get("detected_product_name") or "Unknown item"
                 det_cat = data.get("detected_category") or "Other"
                 sku = data.get("matched_catalog_sku")
+                if isinstance(sku, str) and sku.strip().lower() in {"none", "null", "unknown", ""}:
+                    sku = None
                 is_catalog = bool(data.get("is_catalog_product", False))
                 cond = data.get("visual_condition") or "unclear"
-                defect_type = data.get("defect_type") or ("damaged_item" if cond in ("damaged", "torn", "defective") else "none")
-                severity = data.get("severity_level") or ("moderate_functional" if cond in ("damaged", "torn", "defective") else "none")
-                
-                try:
-                    dar = float(data.get("defect_area_ratio") or (0.30 if cond in ("damaged", "torn", "defective") else 0.0))
-                    dar = max(0.0, min(1.0, dar))
-                except (ValueError, TypeError):
-                    dar = 0.25 if cond in ("damaged", "torn", "defective") else 0.0
+                damaged = cond in {"damaged", "torn", "defective", "wrong_item"}
+                defect_type = data.get("defect_type") or ("damaged_item" if damaged else "none")
+                severity = data.get("severity_level") or ("moderate_functional" if damaged else "none")
+                raw_dar = data.get("defect_area_ratio")
+                dar = _normalize_dar(raw_dar, damaged=damaged)
+                LOGGER.info(
+                    "Vision DAR raw=%s normalized=%.2f (%.0f%% of visible product area) damaged=%s",
+                    raw_dar,
+                    dar,
+                    dar * 100,
+                    damaged,
+                )
 
                 diag_reason = data.get("diagnostic_reasoning") or data.get("defect_description") or ""
                 defect = data.get("defect_description") or diag_reason
@@ -355,34 +401,30 @@ def analyze_email_images(
                     summary=summary,
                     matches_order_history=matches_order,
                     matched_order_number=matched_onum,
+                    vision_available=True,
+                    json_valid=True,
                 )
             except Exception as exc:
                 LOGGER.warning("Failed to parse vision model JSON response: %s", exc)
 
-    # Fallback heuristic if vision API is unavailable / off
-    matches_order, matched_onum, resolved_pname, resolved_sku = _match_product_with_order_history(
-        detected_product_name="",
-        detected_category="",
-        matched_sku="",
-        customer_orders=customer_orders,
-        customer_message=customer_message,
-    )
-
+    LOGGER.warning("Vision analysis unavailable; routing image email to human review without inferred defects")
     return VisualContext(
         has_images=True,
         image_count=len(image_bytes_list),
-        detected_product_name=resolved_pname or "Attached product",
+        detected_product_name="Attached product",
         detected_category="General",
-        matched_catalog_sku=resolved_sku,
-        is_catalog_product=bool(resolved_sku),
+        matched_catalog_sku=None,
+        is_catalog_product=False,
         visual_condition="unclear",
         defect_type="none",
         severity_level="none",
         defect_area_ratio=0.0,
         diagnostic_reasoning="",
         defect_description="",
-        visual_confidence=0.60 if matches_order else 0.40,
-        summary=f"Customer attached {len(image_bytes_list)} image(s) regarding {resolved_pname or 'product'}.",
-        matches_order_history=matches_order,
-        matched_order_number=matched_onum,
+        visual_confidence=0.0,
+        summary=f"Customer attached {len(image_bytes_list)} image(s); vision analysis was unavailable.",
+        matches_order_history=None,
+        matched_order_number=None,
+        vision_available=False,
+        json_valid=False,
     )
