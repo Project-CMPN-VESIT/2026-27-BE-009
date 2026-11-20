@@ -4,6 +4,7 @@ A production-ready, intelligent customer support automation system that uses **D
 
 ## 📋 Table of Contents
 
+- [Capstone Deliverables](#capstone-deliverables)
 - [Overview](#overview)
 - [Architecture](#architecture)
 - [Core Components](#core-components)
@@ -18,6 +19,14 @@ A production-ready, intelligent customer support automation system that uses **D
 - [API Endpoints](#api-endpoints)
 - [Key Features](#key-features)
 - [Project Structure](#project-structure)
+
+---
+
+## 🎓 Capstone Deliverables
+
+- **Final Capstone Project Blackbook Report:** [Google Doc](https://docs.google.com/document/d/1LvbeGRIQWT5Zii7p590sJ5lftqC1oXrR/edit?usp=sharing&ouid=105037697231553138640&rtpof=true&sd=true)
+- **Presentation Slides:** [Poster](https://canva.link/b8jw5v15wl4u00x) · [Video](https://canva.link/doyhndsh7zx11zm)
+- **Poster and Demonstration Video:** [Canva](https://canva.link/r9pehduewada0no)
 
 ---
 
